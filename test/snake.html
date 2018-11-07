@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Snake</title>
+    <style media="screen">
+      html, body{
+        margin: 0;
+        padding: 0;
+      }
+    </style>
+  </head>
+  <body>
+    <h2 style="text-align:center;">Check this out!</h2>
+    <canvas id="field" style="display: block; margin: 0 auto;">Your browser doesn't have html 5</canvas>
+  </body>
+  <script type="text/javascript">
+    var canvasSnake = document.getElementById('field');
+    canvasSnake.width = (Math.floor(innerWidth / 40) - 1) * 40;
+    canvasSnake.height = (Math.floor(innerHeight / 40) - 1) * 40;
+    var context = canvasSnake.getContext('2d');
+    context.beginPath();
+    for(let i = 0; i <= canvasSnake.height / 40; i++){
+      context.moveTo(0, i * 40);
+      context.lineTo(canvasSnake.width, i * 40);
+    }
+    for(let i = 0; i <= canvasSnake.width / 40; i++){
+      context.moveTo(i * 40, 0);
+      context.lineTo(i * 40, canvasSnake.height);
+    }
+    context.stroke();
+
+    canvasSnake.addEventListener('click', (event) => {
+      let x = event.clientX - (event.target.offsetLeft);
+      let y = event.clientY - offsetY(event.target);
+      context.fillStyle = '#ff0000';
+      context.fillRect(Math.floor(x / 40) * 40 + 1, Math.floor(y / 40) * 40 + 1, 38, 38);
+      setTimeout(() => {
+        context.clearRect(Math.floor(x / 40) * 40 + 1, Math.floor(y / 40) * 40 + 1, 38, 38);
+      }, 1000);
+    });
+
+
+    function offsetY(element){
+      let parent = element.parentNode;
+      let result = 0;
+      do{
+        let i = 0;
+        let sibling = parent.children[0];
+        while(sibling && sibling != element){
+          result += getAbsoluteHeight(sibling);
+          sibling = parent.children[++i];
+        }
+        parent = parent.parentNode;
+      }while(parent && parent != document.body && parent != document.documentElement);
+      return result;
+    }
+
+    function getAbsoluteHeight(el) {
+      let styles = window.getComputedStyle(el);
+      let margin = parseFloat(styles['marginTop']) +
+      parseFloat(styles['marginBottom']);
+      return Math.ceil(el.offsetHeight + margin);
+}
+  </script>
+</html>
