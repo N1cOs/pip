@@ -18,7 +18,7 @@
         </div>
     </div>
     <div class="content">
-        <form id="test" class="choose" action="controllerServlet" method="post">
+        <form id="test" class="choose" action="controllerServlet" method="get">
             <p>Выберите координату по X:</p>
             <input id="hiddenX" type="hidden" name="valueOfX" value="-1">
             <div class="coord_x">

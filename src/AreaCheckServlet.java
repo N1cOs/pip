@@ -6,25 +6,23 @@ import java.io.IOException;
 
 public class AreaCheckServlet extends HttpServlet {
     @Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        double coordinateX = Double.parseDouble(req.getParameter("coord_x"));
-        double coordinateY = Double.parseDouble(req.getParameter("coord_y"));
-        double radius = Double.parseDouble(req.getParameter("radius"));
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        double coordinateX = Double.parseDouble(req.getParameter("valueOfX"));
+        double coordinateY = Double.parseDouble(req.getParameter("valueOfY"));
+        double radius = Double.parseDouble(req.getParameter("valueOfR"));
         req.setAttribute("result", checkArea(coordinateX, coordinateY, radius));
-        req.getRequestDispatcher("result.jsp").forward(req, resp);
+        req.getRequestDispatcher("template/result.jsp").forward(req, resp);
     }
 
-    private boolean checkArea(double x, double y, double r){
-        if(x >= 0){
-            if(Math.sqrt(x * x + y * y) <= r / 2){
+    private boolean checkArea(double x, double y, double r) {
+        if (x >= 0) {
+            if (y >= 0 && y <= r) {
                 return true;
-            }
-            else if(y <= 0 && (x - y) <= r){
+            } else if (y <= 0 && (x - y) <= r) {
                 return true;
             }
             return false;
-        }
-        else if(x >= -r / 2 && y <= 0 && y >= -r){
+        } else if (Math.sqrt(x * x + y * y) <= r / 2) {
             return true;
         }
         return false;

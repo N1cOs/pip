@@ -6,7 +6,7 @@ import java.io.IOException;
 
 public class ControllerServlet extends HttpServlet {
     @Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         //Validating data
         req.getRequestDispatcher("check").forward(req, resp);
     }
