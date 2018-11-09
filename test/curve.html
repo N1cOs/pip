@@ -1,0 +1,71 @@
+<!DOCTYPE HTML>
+<html>
+  <head>
+    <style>
+      body {
+        margin: 0px;
+        padding: 0px;
+      }
+      canvas{
+        margin-left: 15px;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>s</h1>
+    <canvas id="myCanvas"></canvas>
+    <script>
+      var canvas = document.getElementById('myCanvas');
+      var context = canvas.getContext('2d');
+
+      var imageObj = new Image();
+      function writeImg(){
+        var pattern = context.createPattern(imageObj, 'no-repeat');
+        canvas.width = imageObj.width;
+        canvas.height = imageObj.height;
+        context.rect(0, 0, canvas.width, canvas.height);
+        context.fillStyle = pattern;
+        context.fill();
+      }
+      imageObj.onload = function() {
+        var pattern = context.createPattern(imageObj, 'no-repeat');
+        canvas.width = imageObj.width;
+        canvas.height = imageObj.height;
+        context.rect(0, 0, canvas.width, canvas.height);
+        context.fillStyle = pattern;
+        context.fill();
+      };
+      // imageObj.onload = writeImg();
+      imageObj.src = 'https://se.ifmo.ru/~s243852/area.png';
+    
+      function writeMsg(canvas, message){
+        
+        context.clearRect(0,0,canvas.width,canvas.height);
+        context.font = '18pt Calibri';
+        context.fillStyle = 'black';
+        context.fillText(message, 10, 25);
+      }
+      function getMP(canvas, event){
+        let rect = canvas.getBoundingClientRect();
+        return {
+          x: event.clientX - rect.left,
+          y: event.clientY - rect.top
+        };
+      }
+      
+      
+      canvas.addEventListener('click', function(event){
+        let MP = getMP(canvas, event);
+        // let message = 'MP: ('+ MP.x+', '+MP.y+')';
+        console.log(MP.x, MP.y);
+        context.beginPath();
+        context.fillRect(MP.x, MP.y, 5, 5);
+        context.fillStyle = 'red';
+        context.fill();
+        
+        // writeMsg(canvas,message);
+        // writeImg();
+      });
+    </script>
+  </body>
+</html> 
