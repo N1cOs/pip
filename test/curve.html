@@ -1,71 +1,84 @@
 <!DOCTYPE HTML>
 <html>
-  <head>
+<head>
     <style>
-      body {
-        margin: 0px;
-        padding: 0px;
-      }
-      canvas{
-        margin-left: 15px;
-      }
-    </style>
-  </head>
-  <body>
-    <h1>s</h1>
-    <canvas id="myCanvas"></canvas>
-    <script>
-      var canvas = document.getElementById('myCanvas');
-      var context = canvas.getContext('2d');
+        body {
+            margin: 0px;
+            padding: 0px;
+        }
 
-      var imageObj = new Image();
-      function writeImg(){
-        var pattern = context.createPattern(imageObj, 'no-repeat');
-        canvas.width = imageObj.width;
-        canvas.height = imageObj.height;
-        context.rect(0, 0, canvas.width, canvas.height);
-        context.fillStyle = pattern;
-        context.fill();
-      }
-      imageObj.onload = function() {
-        var pattern = context.createPattern(imageObj, 'no-repeat');
-        canvas.width = imageObj.width;
-        canvas.height = imageObj.height;
-        context.rect(0, 0, canvas.width, canvas.height);
-        context.fillStyle = pattern;
-        context.fill();
-      };
-      // imageObj.onload = writeImg();
-      imageObj.src = 'https://se.ifmo.ru/~s243852/area.png';
-    
-      function writeMsg(canvas, message){
-        
-        context.clearRect(0,0,canvas.width,canvas.height);
-        context.font = '18pt Calibri';
-        context.fillStyle = 'black';
-        context.fillText(message, 10, 25);
-      }
-      function getMP(canvas, event){
+        canvas {
+            margin-left: 15px;
+        }
+    </style>
+</head>
+<body>
+<canvas id="myCanvas" width="300" height="300" style="margin: 20px; border: 2px solid #0a28b4"></canvas>
+<script>
+    var radius = 100;
+    var canvas = document.getElementById('myCanvas');
+
+    var ctx = canvas.getContext('2d');
+    var width = canvas.width;
+    var height = canvas.height;
+    const coordCenter = width / 2;
+
+
+    ctx.beginPath();
+    let startangel = 180 * Math.PI / 180;
+    let endangel = 270 * Math.PI / 180;
+    ctx.arc(coordCenter, coordCenter, radius / 2, startangel, endangel, false);
+    ctx.fillStyle = 'blue';
+    ctx.fill();
+    // ctx.stroke();
+    ctx.moveTo(width / 2, height / 2 - radius / 2);
+    ctx.lineTo(width / 2 - radius / 2, height / 2);
+    ctx.lineTo(width / 2, height / 2);
+    ctx.fill();
+    ctx.beginPath();
+    ctx.rect(width / 2, height / 2 - radius, radius, radius);
+    ctx.fill();
+    ctx.beginPath();
+    ctx.moveTo(width / 2, height / 2 + radius);
+    ctx.lineTo(width / 2 + radius, height / 2);
+    ctx.lineTo(width / 2, height / 2);
+    ctx.fill();
+    ctx.fillStyle = 'blue';
+    ctx.fill();
+    ctx.strokeStyle = 'black';
+    ctx.stroke;
+
+    ctx.beginPath();
+    ctx.moveTo(0, height / 2);
+    ctx.lineTo(width, height / 2);
+    ctx.strokeStyle = '#000';
+    ctx.stroke();
+    ctx.beginPath();
+    ctx.moveTo(width / 2, 0);
+    ctx.lineTo(width / 2, height);
+    ctx.stroke();
+
+    ctx.fillStyle = '#ed1c24';
+
+    function getMP(canvas, event) {
         let rect = canvas.getBoundingClientRect();
         return {
-          x: event.clientX - rect.left,
-          y: event.clientY - rect.top
+            x: event.clientX - rect.left,
+            y: event.clientY - rect.top
         };
-      }
-      
-      
-      canvas.addEventListener('click', function(event){
+    }
+
+
+    canvas.addEventListener('click', function (event) {
         let MP = getMP(canvas, event);
-        // let message = 'MP: ('+ MP.x+', '+MP.y+')';
         console.log(MP.x, MP.y);
-        context.beginPath();
-        context.fillRect(MP.x, MP.y, 5, 5);
-        context.fillStyle = 'red';
-        context.fill();
-        
-        // writeMsg(canvas,message);
-        // writeImg();
-      });
-    </script>
-  </body>
+        ctx.beginPath();
+        ctx.fillRect(MP.x, MP.y, 5, 5);
+        ctx.fillStyle = '#ed1c24';
+        ctx.fill();
+    });
+
+
+</script>
+</body>
 </html> 
