@@ -31,5 +31,12 @@ document.getElementById('area_form').onsubmit = () =>{
     return result;
 };
 
+document.querySelector('canvas').onclick = () => {
+    let text = document.querySelector('input[name="valueOfR"]').value;
+    if (text) {
+        document.querySelector('form').submit();
+    }
+};
+
 
 
