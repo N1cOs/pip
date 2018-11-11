@@ -35,14 +35,5 @@ public class ControllerServlet extends HttpServlet {
 
     }
 
-//    boolean isNumeric(String s) {
-//        return (s != null && Double.isNaN(Double.parseDouble(s)));
-//    }
 
-
-    // можно еще так прописать вместо isNaN:
-    // && isNumeric(ValueOfR)
-//    boolean isNumeric(String s) {
-//        return s != null && s.matches("[-+]?\\d*\\.?\\d+");
-//    }
 }
