@@ -97,8 +97,8 @@
                 // console.log(MP.x - width / 2, -MP.y + height / 2);
 
                 // задаем значения для инпутов формы
-                document.querySelector('input[name="valueOfX"]').setAttribute('value', (MP.x - width / 2).toFixed(3));
-                document.querySelector('input[name="valueOfY"]').setAttribute('value', (-MP.y + height / 2).toFixed(3));
+                document.querySelector('input[name="valueOfX"]').setAttribute('value', ((MP.x - width / 2)/30).toFixed(3));
+                document.querySelector('input[name="valueOfY"]').setAttribute('value', ((-MP.y + height / 2)/30).toFixed(3));
                 console.log(document.querySelector('input[name="valueOfX"]').value);
                 console.log(document.querySelector('input[name="valueOfY"]').value);
 
