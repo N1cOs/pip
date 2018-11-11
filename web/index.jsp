@@ -81,5 +81,6 @@
     <script type="text/javascript" src="static/js/validationForm.js"></script>
     <script type="text/javascript" src="static/js/sendData.js"></script>
     <script type="text/javascript" src="static/js/animatingButtons.js"></script>
+    <script type="text/javascript" src="static/js/prettyOutput.js"></script>
 </body>
 </html>

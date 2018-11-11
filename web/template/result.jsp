@@ -18,15 +18,20 @@
                 <th>Результат</th>
             </tr>
             <tr>
-                <td><% out.println(request.getParameter("valueOfX"));%></td>
-                <td><% out.println(request.getParameter("valueOfY"));%></td>
-                <td><% out.println(request.getParameter("valueOfR"));%></td>
+                <td><%= request.getParameter("valueOfX")%></td>
+                <td><%= request.getParameter("valueOfY")%></td>
+                <td><%= request.getParameter("valueOfR")%></td>
                 <td>
                     <%
-                        if ((Boolean) request.getAttribute("result")) {
-                            out.println("Точка находится в области");
-                        } else {
-                            out.println("Точка находится вне области");
+                        if (request.getAttribute("correct") == null) {
+                            if ((Boolean) request.getAttribute("result")) {
+                                out.println("Точка находится в области");
+                            } else {
+                                out.println("Точка находится вне области");
+                            }
+                        }
+                        else{
+                            out.println("Введены некорректные данные");
                         }
                     %>
                 </td>
