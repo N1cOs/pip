@@ -61,11 +61,22 @@
                         previousResults = new ArrayList<Result>();
                         session.setAttribute("previousResults", previousResults);
                     }
+//                    Logger logger = Logger.getLogger(getClass().getName());
                     for(Result result : previousResults){
                         out.println("<tr>");
-                        for(String field : result.getAllValues().split(",")){
-                            out.println("<td>");
-                            out.println(field);
+                        String[] fields = result.getAllValues().split(",");
+                        for(int i = 0; i < fields.length; i++){
+                            out.print("<td");
+                            if(i == 1){
+                                out.println(" class = \"x_coord\">");
+                            }
+                            else if(i == 2){
+                                out.println(" class = \"y_coord\">");
+                            }
+                            else{
+                                out.println(">");
+                            }
+                            out.println(fields[i]);
                             out.println("</td>");
                         }
                         out.println("</tr>");
