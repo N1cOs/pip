@@ -1,3 +1,6 @@
+<%@ page import="domain.Result" %>
+<%@ page import="java.util.ArrayList" %>
+<%@ page import="java.util.logging.Logger" %>
 <%@ page contentType="text/html;charset=UTF-8" %>
 <html>
 <head>
@@ -36,12 +39,45 @@
             <input type="text" maxlength="15" name="valueOfY" placeholder="Введите число от -5 до 3">
             <p>Выберите значение радиуса R:</p>
             <input type="text" maxlength="15" name="valueOfR" placeholder="Введите число от 1 до 4">
+            <p>Можете выбрать точку на области:</p>
+            <canvas id="myCanvas" width="400" height="400"></canvas>
             <input type="submit" name="submitForm" value="Проверить">
         </form>
+        <div class="previous_checks">
+            <div class="title">
+                Результаты прошлых проверок
+            </div>
+            <table id="history_table">
+                <tr>
+                    <th>Дата и время проверки</th>
+                    <th>Координата X</th>
+                    <th>Координата Y</th>
+                    <th>Радиус</th>
+                    <th>Результат</th>
+                </tr>
+                <%
+                    ArrayList<Result> previousResults = (ArrayList<Result>) session.getAttribute("previousResults");
+                    if(previousResults == null){
+                        previousResults = new ArrayList<Result>();
+                        session.setAttribute("previousResults", previousResults);
+                    }
+                    for(Result result : previousResults){
+                        out.println("<tr>");
+                        for(String field : result.getAllValues().split(",")){
+                            out.println("<td>");
+                            out.println(field);
+                            out.println("</td>");
+                        }
+                        out.println("</tr>");
+                    }
+                %>
+            </table>
+        </div>
     </div>
-    <footer>
-        <div>Университет ИТМО, 2018</div>
-    </footer>
+    <%--<footer>--%>
+        <%--<div>Университет ИТМО, 2018</div>--%>
+    <%--</footer>--%>
+    <script type="text/javascript" src="static/js/areaCanvas.js"></script>
     <script type="text/javascript" src="static/js/validationForm.js"></script>
     <script type="text/javascript" src="static/js/sendData.js"></script>
     <script type="text/javascript" src="static/js/animatingButtons.js"></script>

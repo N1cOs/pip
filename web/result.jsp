@@ -18,9 +18,9 @@
                 <th>Результат</th>
             </tr>
             <tr>
-                <td><%= request.getParameter("valueOfX")%></td>
-                <td><%= request.getParameter("valueOfY")%></td>
-                <td><%= request.getParameter("valueOfR")%></td>
+                <td><% out.println(request.getParameter("valueOfX"));%></td>
+                <td><% out.println(request.getParameter("valueOfY"));%></td>
+                <td><% out.println(request.getParameter("valueOfR"));%></td>
                 <td>
                     <%
                         if ((Boolean) request.getAttribute("result")) {

@@ -1,8 +1,13 @@
+import domain.Result;
+
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.logging.Logger;
 
 public class AreaCheckServlet extends HttpServlet {
     @Override
@@ -10,8 +15,18 @@ public class AreaCheckServlet extends HttpServlet {
         double coordinateX = Double.parseDouble(req.getParameter("valueOfX"));
         double coordinateY = Double.parseDouble(req.getParameter("valueOfY"));
         double radius = Double.parseDouble(req.getParameter("valueOfR"));
-        req.setAttribute("result", checkArea(coordinateX, coordinateY, radius));
-        req.getRequestDispatcher("template/result.jsp").forward(req, resp);
+        boolean result = checkArea(coordinateX, coordinateY, radius);
+        ArrayList<Result> previousResults = (ArrayList<Result>) req.getSession().getAttribute("previousResults");
+        Result resultDomain = new Result();
+        resultDomain.setResultDate(new Date());
+        resultDomain.setValueOfX(coordinateX);
+        resultDomain.setValueOfY(coordinateY);
+        resultDomain.setValueOfR(radius);
+        resultDomain.setResult(result);
+        previousResults.add(resultDomain);
+        req.setAttribute("result", result);
+        req.setAttribute("previousResults", previousResults);
+        req.getRequestDispatcher("result.jsp").forward(req, resp);
     }
 
     private boolean checkArea(double x, double y, double r) {
