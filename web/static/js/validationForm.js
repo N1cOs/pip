@@ -11,9 +11,9 @@ document.querySelectorAll('input[type="text"]').forEach((element) => {
 document.getElementById('area_form').onsubmit = () =>{
     const textY = document.querySelector('[name="valueOfY"]');
     textY.value = textY.value.replace(/,/, '.');
-    const valueOfX = parseInt(document.getElementById('hiddenX').value, 10);
-    const valueOfY = parseFloat(textY.value);
-    const valueOfR = parseFloat(document.querySelector('[name="valueOfR"]').value);
+    const valueOfX = parseInt(document.getElementById('hiddenX').value, 10),
+        valueOfY = parseFloat(textY.value),
+        valueOfR = parseFloat(document.querySelector('[name="valueOfR"]').value);
     let result = true;
 
     if(isNaN(valueOfX) || valueOfX < -2 || valueOfX > 2){
@@ -30,6 +30,3 @@ document.getElementById('area_form').onsubmit = () =>{
     }
     return result;
 };
-
-
-

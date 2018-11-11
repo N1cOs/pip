@@ -2,17 +2,40 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>Result</title>
+    <title>Результат</title>
+    <link rel="stylesheet" href="static/css/result.css">
 </head>
 <body>
-<h2 style="text-align: center"> Результаты проверки</h2>
-<p><%
-    if ((Boolean) request.getAttribute("result")) {
-        out.println("Точка в находится в области");
-    }
-    else{
-        out.println("Точка в находится вне области");
-    }
-%></p>
+    <div class="header">
+        Результаты
+    </div>
+    <div class="content">
+        <table>
+            <tr>
+                <th>Координата X</th>
+                <th>Координата Y</th>
+                <th>Радиус</th>
+                <th>Результат</th>
+            </tr>
+            <tr>
+                <td><%= request.getParameter("valueOfX")%></td>
+                <td><%= request.getParameter("valueOfY")%></td>
+                <td><%= request.getParameter("valueOfR")%></td>
+                <td>
+                    <%
+                        if ((Boolean) request.getAttribute("result")) {
+                            out.println("Точка находится в области");
+                        } else {
+                            out.println("Точка находится вне области");
+                        }
+                    %>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <footer>
+        <a href="index.jsp">Вернуться на главную страницу</a>
+        <div>Университет ИТМО, 2018</div>
+    </footer>
 </body>
 </html>
