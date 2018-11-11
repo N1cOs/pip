@@ -1,5 +1,7 @@
 package domain;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class Result {
@@ -50,6 +52,7 @@ public class Result {
     }
 
     public String getAllValues(){
-        return resultDate + "," + valueOfX + "," + valueOfY + "," + valueOfR + "," + result;
+        String formatDate = new SimpleDateFormat("dd/MM/yyyy HH:mm").format(resultDate);
+        return formatDate + "," + valueOfX + "," + valueOfY + "," + valueOfR + "," + result;
     }
 }

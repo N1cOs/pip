@@ -50,10 +50,21 @@ function getMP(canvas, event) {
 
 
 canvas.addEventListener('click', function (event) {
-    let MP = getMP(canvas, event);
-    console.log(MP.x, MP.y);
+    const MP = getMP(canvas, event);
+    const inputR = document.querySelector('input[name="valueOfR"');
+
     ctx.beginPath();
     ctx.fillRect(MP.x, MP.y, 5, 5);
     ctx.fillStyle = '#ed1c24';
     ctx.fill();
+
+    document.querySelector('input[name="valueOfX"]').setAttribute('value', ((MP.x - width / 2) / 30).toFixed(3));
+    document.querySelector('input[name="valueOfY"]').setAttribute('value', ((-MP.y + height / 2) / 30).toFixed(3));
+
+    inputR.onchange = () => {
+        radius = inputR.value * 30;
+        console.log(radius);
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        draw();
+    };
 });

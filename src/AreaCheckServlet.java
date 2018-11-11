@@ -26,7 +26,7 @@ public class AreaCheckServlet extends HttpServlet {
         previousResults.add(resultDomain);
         req.setAttribute("result", result);
         req.setAttribute("previousResults", previousResults);
-        req.getRequestDispatcher("result.jsp").forward(req, resp);
+        req.getRequestDispatcher("template/result.jsp").forward(req, resp);
     }
 
     private boolean checkArea(double x, double y, double r) {
