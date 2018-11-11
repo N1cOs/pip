@@ -67,4 +67,21 @@ canvas.addEventListener('click', function (event) {
         ctx.clearRect(0, 0, canvas.width, canvas.height);
         draw();
     };
+
+
+});
+
+let massive = [];
+massive.push([122, 122]);
+massive.push([222, 111]);
+massive.push([44, 10]);
+massive.push([250, 190]);
+
+
+massive.forEach(function (coords) {
+    ctx.beginPath();
+    ctx.fillRect(coords[0], coords[1], 5, 5);
+    console.log(coords[0],coords[1])
+    ctx.fillStyle = '#ed1c24';
+    ctx.fill();
 });

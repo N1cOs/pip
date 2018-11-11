@@ -37,95 +37,96 @@
             <input type="text" maxlength="15" name="valueOfR" placeholder="Введите число от 1 до 4">
             <input type="submit" name="submitForm" value="Проверить">
             <canvas id="myCanvas" width="300" height="300" style="margin: 20px; border: 2px solid #0a28b4"></canvas>
-            <script>
-                var radius = 100;
-                var canvas = document.getElementById('myCanvas');
+            <!--<script>-->
+                <!--var radius = 100;-->
+                <!--var canvas = document.getElementById('myCanvas');-->
 
-                var ctx = canvas.getContext('2d');
-                var width = canvas.width;
-                var height = canvas.height;
-                const coordCenter = width / 2;
-                draw();
+                <!--var ctx = canvas.getContext('2d');-->
+                <!--var width = canvas.width;-->
+                <!--var height = canvas.height;-->
+                <!--const coordCenter = width / 2;-->
+                <!--draw();-->
 
-                function draw() {
-                    ctx.beginPath();
-                    let startangel = 180 * Math.PI / 180;
-                    let endangel = 270 * Math.PI / 180;
-                    ctx.arc(coordCenter, coordCenter, radius / 2, startangel, endangel, false);
-                    ctx.fillStyle = 'blue';
-                    ctx.fill();
-                    // ctx.stroke();
-                    ctx.moveTo(width / 2, height / 2 - radius / 2);
-                    ctx.lineTo(width / 2 - radius / 2, height / 2);
-                    ctx.lineTo(width / 2, height / 2);
-                    ctx.fill();
-                    ctx.beginPath();
-                    ctx.rect(width / 2, height / 2 - radius, radius, radius);
-                    ctx.fill();
-                    ctx.beginPath();
-                    ctx.moveTo(width / 2, height / 2 + radius);
-                    ctx.lineTo(width / 2 + radius, height / 2);
-                    ctx.lineTo(width / 2, height / 2);
-                    ctx.fill();
-                    ctx.fillStyle = 'blue';
-                    ctx.fill();
-                    ctx.strokeStyle = 'black';
-                    ctx.stroke();
+                <!--function draw() {-->
+                    <!--ctx.beginPath();-->
+                    <!--let startangel = 180 * Math.PI / 180;-->
+                    <!--let endangel = 270 * Math.PI / 180;-->
+                    <!--ctx.arc(coordCenter, coordCenter, radius / 2, startangel, endangel, false);-->
+                    <!--ctx.fillStyle = 'blue';-->
+                    <!--ctx.fill();-->
+                    <!--// ctx.stroke();-->
+                    <!--ctx.moveTo(width / 2, height / 2 - radius / 2);-->
+                    <!--ctx.lineTo(width / 2 - radius / 2, height / 2);-->
+                    <!--ctx.lineTo(width / 2, height / 2);-->
+                    <!--ctx.fill();-->
+                    <!--ctx.beginPath();-->
+                    <!--ctx.rect(width / 2, height / 2 - radius, radius, radius);-->
+                    <!--ctx.fill();-->
+                    <!--ctx.beginPath();-->
+                    <!--ctx.moveTo(width / 2, height / 2 + radius);-->
+                    <!--ctx.lineTo(width / 2 + radius, height / 2);-->
+                    <!--ctx.lineTo(width / 2, height / 2);-->
+                    <!--ctx.fill();-->
+                    <!--ctx.fillStyle = 'blue';-->
+                    <!--ctx.fill();-->
+                    <!--ctx.strokeStyle = 'black';-->
+                    <!--ctx.stroke();-->
 
-                    ctx.beginPath();
-                    ctx.moveTo(0, height / 2);
-                    ctx.lineTo(width, height / 2);
-                    ctx.strokeStyle = '#000';
-                    ctx.stroke();
-                    ctx.beginPath();
-                    ctx.moveTo(width / 2, 0);
-                    ctx.lineTo(width / 2, height);
-                    ctx.stroke();
+                    <!--ctx.beginPath();-->
+                    <!--ctx.moveTo(0, height / 2);-->
+                    <!--ctx.lineTo(width, height / 2);-->
+                    <!--ctx.strokeStyle = '#000';-->
+                    <!--ctx.stroke();-->
+                    <!--ctx.beginPath();-->
+                    <!--ctx.moveTo(width / 2, 0);-->
+                    <!--ctx.lineTo(width / 2, height);-->
+                    <!--ctx.stroke();-->
 
-                    // ctx.fillStyle = '#ed1c24';
-                }
+                    <!--// ctx.fillStyle = '#ed1c24';-->
+                <!--}-->
 
-                function getMP(canvas, event) {
-                    let rect = canvas.getBoundingClientRect();
-                    return {
-                        x: event.clientX - rect.left,
-                        y: event.clientY - rect.top
-                    };
-                }
-
-
-                canvas.addEventListener('click', function (event) {
-                    let MP = getMP(canvas, event);
-                    // console.log(MP.x - width / 2, -MP.y + height / 2);
-
-                    // задаем значения для инпутов формы
-                    document.querySelector('input[name="valueOfX"]').setAttribute('value', ((MP.x - width / 2) / 30).toFixed(3));
-                    document.querySelector('input[name="valueOfY"]').setAttribute('value', ((-MP.y + height / 2) / 30).toFixed(3));
-                    console.log(document.querySelector('input[name="valueOfX"]').value);
-                    console.log(document.querySelector('input[name="valueOfY"]').value);
+                <!--function getMP(canvas, event) {-->
+                    <!--let rect = canvas.getBoundingClientRect();-->
+                    <!--return {-->
+                        <!--x: event.clientX - rect.left,-->
+                        <!--y: event.clientY - rect.top-->
+                    <!--};-->
+                <!--}-->
 
 
-                    // код для отрисовки точки.
+                <!--canvas.addEventListener('click', function (event) {-->
+                    <!--let MP = getMP(canvas, event);-->
+                    <!--// console.log(MP.x - width / 2, -MP.y + height / 2);-->
 
-                    // ctx.beginPath();
-                    // ctx.fillRect(MP.x, MP.y, 5, 5);
-                    // ctx.fillStyle = '#ed1c24';
-                    // ctx.fill();
-                });
-
-                // изменяем размер фигур после изменения параметра R
-                let inputR = document.querySelector('input[name="valueOfR"');
-                inputR.onchange = () => {
-                    radius = inputR.value * 30;
-                    console.log(radius);
-                    ctx.clearRect(0, 0, canvas.width, canvas.height);
-                    draw();
-                };
+                    <!--// задаем значения для инпутов формы-->
+                    <!--document.querySelector('input[name="valueOfX"]').setAttribute('value', ((MP.x - width / 2) / 30).toFixed(3));-->
+                    <!--document.querySelector('input[name="valueOfY"]').setAttribute('value', ((-MP.y + height / 2) / 30).toFixed(3));-->
+                    <!--console.log(document.querySelector('input[name="valueOfX"]').value);-->
+                    <!--console.log(document.querySelector('input[name="valueOfY"]').value);-->
 
 
-            </script>
+                    <!--// код для отрисовки точки.-->
+
+                    <!--// ctx.beginPath();-->
+                    <!--// ctx.fillRect(MP.x, MP.y, 5, 5);-->
+                    <!--// ctx.fillStyle = '#ed1c24';-->
+                    <!--// ctx.fill();-->
+                <!--});-->
+
+                <!--// изменяем размер фигур после изменения параметра R-->
+                <!--let inputR = document.querySelector('input[name="valueOfR"');-->
+                <!--inputR.onchange = () => {-->
+                    <!--radius = inputR.value * 30;-->
+                    <!--console.log(radius);-->
+                    <!--ctx.clearRect(0, 0, canvas.width, canvas.height);-->
+                    <!--draw();-->
+                <!--};-->
+
+
+            <!--</script>-->
         </form>
         <script src="../web/static/js/validationForm.js"></script>
+        <script src="../web/static/js/areaCanvas.js"></script>
     </div>
 </body>
 </html> 
