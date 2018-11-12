@@ -31,9 +31,13 @@ document.getElementById('area_form').onsubmit = () =>{
     return result;
 };
 
-document.querySelector('canvas').onclick = () => {
-    let text = document.querySelector('input[name="valueOfR"]').value;
-    if (text) {
+document.querySelector('canvas').addEventListener('click', () => {
+    let text = parseFloat(document.querySelector('input[name="valueOfR"]').value);
+    if (text && text >= 1 && text <= 4) {
         document.querySelector('form').submit();
     }
-};
+    else{
+        alert('Введите значение радиуса R от 1 до 4');
+    }
+
+});

@@ -4,6 +4,7 @@ const ctx = canvas.getContext('2d');
 const width = canvas.width;
 const height = canvas.height;
 const coordCenter = width / 2;
+const scale = 40;
 
 function draw() {
     ctx.beginPath();
@@ -45,31 +46,36 @@ function draw() {
 function getMP(canvas, event) {
     let rect = canvas.getBoundingClientRect();
     return {
-        x: event.clientX - rect.left,
-        y: event.clientY - rect.top
+        x: event.clientX - rect.left - 5,
+        y: event.clientY - rect.top - 5
     };
 }
 
 
 canvas.addEventListener('click', function (event) {
     const MP = getMP(canvas, event);
-    const inputR = document.querySelector('input[name="valueOfR"');
 
-    ctx.beginPath();
-    ctx.fillRect(MP.x, MP.y, 5, 5);
-    ctx.fillStyle = '#ed1c24';
-    ctx.fill();
 
-    document.querySelector('input[name="valueOfX"]').setAttribute('value', ((MP.x - width / 2) / 30).toFixed(3));
-    document.querySelector('input[name="valueOfY"]').setAttribute('value', ((-MP.y + height / 2) / 30).toFixed(3));
+    if (document.querySelector('input[name="valueOfR"').value) {
+        ctx.beginPath();
+        ctx.arc(MP.x, MP.y, 3, 0, Math.PI * 2);
+        ctx.fillStyle = '#ed1c24';
+        ctx.fill();
+    }
+    else{
+        alert("Выберите сначала значение R");
+    }
 
-    // inputR.onchange = () => {
-    //     radius = inputR.value * 30;
-    //     console.log(radius);
-    //     ctx.clearRect(0, 0, canvas.width, canvas.height);
-    //     draw();
-    // };
+    document.querySelector('input[name="valueOfX"]').setAttribute('value', ((MP.x - width / 2) / scale).toFixed(3));
+    document.querySelector('input[name="valueOfY"]').setAttribute('value', ((-MP.y + height / 2) / scale).toFixed(3));
 });
+
+document.querySelector('input[name="valueOfR"').oninput = () => {
+    radius = event.target.value * scale;
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    draw();
+    historyDots();
+};
 
 function historyDots() {
     const xCoordinates = document.querySelectorAll('td.x_coord');
@@ -78,8 +84,7 @@ function historyDots() {
         ctx.beginPath();
         let valueOfX = parseFloat(xCoordinates[i].innerText);
         let valueOfY = parseFloat(yCoordinates[i].innerText);
-        console.log(valueOfX, valueOfY);
-        ctx.fillRect(valueOfX * 30 + width / 2, valueOfY * 30 + height / 2, 5, 5);
+        ctx.arc(valueOfX * scale + width / 2, height / 2 - valueOfY * scale, 2, 0, Math.PI * 2);
         ctx.fillStyle = '#ed1c24';
         ctx.fill();
     }
