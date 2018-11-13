@@ -4,7 +4,7 @@ const ctx = canvas.getContext('2d');
 const width = canvas.width;
 const height = canvas.height;
 const coordCenter = width / 2;
-const scale = 40;
+const scale = 50;
 
 function draw() {
     ctx.beginPath();

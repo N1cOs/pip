@@ -40,7 +40,7 @@
             <p>Выберите значение радиуса R:</p>
             <input type="text" maxlength="15" name="valueOfR" placeholder="Введите число от 1 до 4">
             <p>Можете выбрать точку на области:</p>
-            <canvas id="myCanvas" width="400" height="400"></canvas>
+            <canvas id="myCanvas" width="500" height="500"></canvas>
             <input type="submit" name="submitForm" value="Проверить">
         </form>
         <div class="previous_checks">
