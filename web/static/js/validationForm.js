@@ -1,4 +1,4 @@
-document.querySelectorAll('input[type="text"]').forEach((element) => {
+document.querySelectorAll('input[type="radius"]').forEach((element) => {
     element.addEventListener('input', replaceY);
     element.addEventListener('change', replaceY);
 
@@ -9,10 +9,10 @@ document.querySelectorAll('input[type="text"]').forEach((element) => {
 });
 
 document.getElementById('area_form').onsubmit = () =>{
-    const textY = document.querySelector('[name="valueOfY"]');
-    textY.value = textY.value.replace(/,/, '.');
+    const radiusY = document.querySelector('[name="valueOfY"]');
+    radiusY.value = radiusY.value.replace(/,/, '.');
     const valueOfX = parseInt(document.getElementById('hiddenX').value, 10),
-        valueOfY = parseFloat(textY.value),
+        valueOfY = parseFloat(radiusY.value),
         valueOfR = parseFloat(document.querySelector('[name="valueOfR"]').value);
     let result = true;
 
@@ -32,8 +32,8 @@ document.getElementById('area_form').onsubmit = () =>{
 };
 
 document.querySelector('canvas').addEventListener('click', () => {
-    let text = parseFloat(document.querySelector('input[name="valueOfR"]').value);
-    if (text && text >= 1 && text <= 4) {
+    let radius = parseFloat(document.querySelector('input[name="valueOfR"]').value);
+    if (radius && radius >= 1 && radius <= 4) {
         document.querySelector('form').submit();
     }
     else{

@@ -62,10 +62,6 @@ canvas.addEventListener('click', function (event) {
         ctx.fillStyle = '#ed1c24';
         ctx.fill();
     }
-    else{
-        alert("Выберите сначала значение R");
-    }
-
     document.querySelector('input[name="valueOfX"]').setAttribute('value', ((MP.x - width / 2) / scale).toFixed(3));
     document.querySelector('input[name="valueOfY"]').setAttribute('value', ((-MP.y + height / 2) / scale).toFixed(3));
 });

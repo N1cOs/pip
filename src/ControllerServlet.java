@@ -15,14 +15,17 @@ public class ControllerServlet extends HttpServlet {
             Double r = Double.parseDouble(valueOfR);
             Double x = Double.parseDouble(valueOfX);
             Double y = Double.parseDouble(valueOfY);
-            req.getRequestDispatcher("check").forward(req, resp);
+            if(checkRXY(r, x, y)){
+                req.getRequestDispatcher("check").forward(req, resp);
+            }
+            throw new IllegalArgumentException();
         } catch (Exception e) {
             req.setAttribute("correct", "false");
             req.getRequestDispatcher("template/result.jsp").forward(req, resp);
         }
     }
 
-//    private boolean checkRXY(Double r, Double x, Double y) {
-//        return (1 <= r && r <= 4 && x >= -2 && x <= 2 && y >= -5 && y <= 3);
-//    }
+    private boolean checkRXY(Double r, Double x, Double y) {
+        return (1 <= r && r <= 4 && x >= -2 && x <= 2 && y >= -5 && y <= 3);
+    }
 }
